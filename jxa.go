@@ -4,9 +4,13 @@ import (
 	"bytes"
 	"os/exec"
 	"strings"
+
+	mac "github.com/wobsoriano/go-macos-version"
 )
 
 func RunJXA(code string) (string, error) {
+	mac.AssertMacOSVersion(">=10.10")
+
 	cmd := exec.Command("osascript", "-l", "JavaScript")
 	cmd.Stdin = strings.NewReader(code)
 
