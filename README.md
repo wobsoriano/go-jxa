@@ -14,13 +14,21 @@ $ go get github.com/wobsoriano/go-jxa
 package main
 
 import (
+	"fmt"
+	"log"
+
 	jxa "github.com/wobsoriano/go-jxa"
 )
 
 func main() {
 	code := "Application('System Events').appearancePreferences.darkMode()"
 	v, err := jxa.RunJXA(code)
-	// v is true if macOS is in dark mode
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	fmt.Printf("Is dark mode: %s", v)
 }
 ```
 
